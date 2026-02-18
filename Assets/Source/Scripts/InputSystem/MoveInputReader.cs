@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace InputSystem
 {
-    public class MoveInputReader : IValueReader<Vector2>, IDisposable
+    public class MoveInputReader : IVectorReader, IDisposable
     {
         private readonly InputActions _inputActions;
         private readonly CancellationTokenSource _tokenSource;

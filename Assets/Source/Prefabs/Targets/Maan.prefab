@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 5506150206488496850}
   - component: {fileID: 1743723632873776488}
   - component: {fileID: 5277409670611113357}
-  m_Layer: 0
+  - component: {fileID: 8593481871449505355}
+  m_Layer: 6
   m_Name: Maan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,3 +104,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e069de39103e4f9fac644ef55bab0052, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TargetSystem.Target
+--- !u!65 &8593481871449505355
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4643769435591070094}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 2, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}

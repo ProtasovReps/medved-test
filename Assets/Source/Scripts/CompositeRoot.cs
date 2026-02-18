@@ -16,14 +16,24 @@ namespace InputSystem
         [SerializeField] private TargetConfig[] _targetConfigs;
         [SerializeField] private Transform[] _spawnPoints;
 
+        [Header("UI")]
+        [SerializeField] private LayerMask _targetsLayer;
+        
+        private ClickReader _clickReader;
+        private MoveInputReader _moveReader;
         private Disposer _disposer;
 
         private void Start()
         {
             _disposer = new Disposer();
 
+            InputActions actions = InstallInput();
+            
             InstallTargets();
             InstallCamera();
+            InstallUI();
+            
+            actions.Enable();
         }
 
         private void OnDestroy()
@@ -40,18 +50,32 @@ namespace InputSystem
                 targetFactory.Produce(_targetConfigs[i], _spawnPoints[i].position);
             }
         }
-
-        private void InstallCamera()
+        
+        private InputActions InstallInput()
         {
             InputActions actions = new();
-            MoveInputReader reader = new(actions);
-            CameraMovement cameraMovement = new(reader, _cameraSpeed);
-
+            
+            _clickReader = new(actions);
+            _moveReader = new(actions);
+            
             _disposer.Add(actions);
-            _disposer.Add(reader);
-            _disposer.Add(cameraMovement);
+            _disposer.Add(_moveReader);
+            _disposer.Add(_clickReader);
+            return actions;
+        }
+        
+        private void InstallCamera()
+        {
+            CameraMovement cameraMovement = new(_moveReader, _cameraSpeed);
 
-            actions.Enable();
+            _disposer.Add(cameraMovement);
+        }
+
+        private void InstallUI()
+        {
+            TargetRaycaster raycaster = new(_clickReader, _targetsLayer);
+            
+            _disposer.Add(raycaster);
         }
     }
 }
