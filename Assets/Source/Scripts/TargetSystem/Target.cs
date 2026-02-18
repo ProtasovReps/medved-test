@@ -1,9 +1,10 @@
 ﻿using System;
+using Interface;
 using UnityEngine;
 
 namespace TargetSystem
 {
-    public class Target : MonoBehaviour
+    public class Target : MonoBehaviour, IInformationalTarget
     {
         private Transform _transform;
         
