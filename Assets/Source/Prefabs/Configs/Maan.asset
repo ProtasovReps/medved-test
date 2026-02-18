@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0f7962c09525a741a51fe0fd2635d37, type: 3}
+  m_Name: Maan
+  m_EditorClassIdentifier: Assembly-CSharp::TargetSystem.TargetConfig
+  <Prefab>k__BackingField: {fileID: 5277409670611113357, guid: 07219b603bfa6f248b91c9bc7d5e7adb, type: 3}
+  <Name>k__BackingField: Ma
+  <MoveSpeed>k__BackingField: 5
+  <Path>k__BackingField: {fileID: 847750968450226427, guid: 270e1e93f7dd9a048b67e8a3406974b6, type: 3}
