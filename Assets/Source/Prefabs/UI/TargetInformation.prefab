@@ -286,6 +286,7 @@ GameObject:
   - component: {fileID: 5237774668173575093}
   - component: {fileID: 6065597584459515470}
   - component: {fileID: 8526804673954604536}
+  - component: {fileID: 7985880811370955471}
   m_Layer: 5
   m_Name: TargetInformation
   m_TagString: Untagged
@@ -361,7 +362,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &8526804673954604536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -379,6 +380,20 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &7985880811370955471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3449260298876242454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9c0d28c17304dac965aefd8eb0c3ef9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI.TargetInfoPanel
+  _name: {fileID: 7456877688003641357}
+  _position: {fileID: 7126909778419218738}
 --- !u!1 &3639263775997590583
 GameObject:
   m_ObjectHideFlags: 0

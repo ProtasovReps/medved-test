@@ -345,6 +345,7 @@ MonoBehaviour:
   _targetsLayer:
     serializedVersion: 2
     m_Bits: 64
+  _prefab: {fileID: 7985880811370955471, guid: 2b60bb77d31a0404eac9b56771b51a12, type: 3}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0

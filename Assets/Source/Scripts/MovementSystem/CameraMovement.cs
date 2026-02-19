@@ -7,10 +7,10 @@ namespace MovementSystem
     public class CameraMovement : IDisposable
     {
         private readonly Transform _camera;
-        private readonly IVectorReader _inputReader;
+        private readonly IObjectObserver<Vector2> _inputObserver;
         private readonly float _speed;
         
-        public CameraMovement(IVectorReader moveInputReader, float speed)
+        public CameraMovement(IObjectObserver<Vector2> inputObserver, float speed)
         {
             if (speed <= 0f)
             {
@@ -18,15 +18,15 @@ namespace MovementSystem
             }
             
             _camera = Camera.main.transform;
-            _inputReader = moveInputReader;
+            _inputObserver = inputObserver;
             _speed = speed;
 
-            _inputReader.ValueChanged += Translate;
+            _inputObserver.Notifying += Translate;
         }
 
         public void Dispose()
         {
-            _inputReader.ValueChanged -= Translate;
+            _inputObserver.Notifying -= Translate;
         }
 
         private void Translate(Vector2 direction)

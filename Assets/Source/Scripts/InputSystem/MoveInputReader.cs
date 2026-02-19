@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace InputSystem
 {
-    public class MoveInputReader : IVectorReader, IDisposable
+    public class MoveInputReader : IObjectObserver<Vector2>, IDisposable
     {
         private readonly InputActions _inputActions;
         private readonly CancellationTokenSource _tokenSource;
@@ -19,7 +19,7 @@ namespace InputSystem
             Read().Forget();
         }
 
-        public event Action<Vector2> ValueChanged;
+        public event Action<Vector2> Notifying;
 
         public void Dispose()
         {
@@ -31,7 +31,7 @@ namespace InputSystem
         {
             while (_tokenSource.IsCancellationRequested == false)
             {
-                ValueChanged?.Invoke(_inputActions.Camera.Move.ReadValue<Vector2>());
+                Notifying?.Invoke(_inputActions.Camera.Move.ReadValue<Vector2>());
                 await UniTask.Yield(_tokenSource.Token, true);
             }
         }

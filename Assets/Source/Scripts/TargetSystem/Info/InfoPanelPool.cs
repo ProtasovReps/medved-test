@@ -1,16 +1,17 @@
 ﻿using System.Collections.Generic;
+using UI;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
-namespace InputSystem.UI
+namespace TargetSystem.Info
 {
-    public class TargetInfoPool//Dispose
+    public class InfoPanelPool
     {
         private readonly Camera _camera;
         private readonly TargetInfoPanel _prefab;
         private readonly Queue<TargetInfoPanel> _freePanels = new ();
-        private readonly List<TargetInfoPanel> _panels = new ();
         
-        public TargetInfoPool(TargetInfoPanel prefab)
+        public InfoPanelPool(TargetInfoPanel prefab)
         {
             _prefab = prefab;
             _camera = Camera.main;
@@ -23,7 +24,17 @@ namespace InputSystem.UI
                 Create();
             }
 
-            return _freePanels.Dequeue();
+            TargetInfoPanel panel = _freePanels.Dequeue();
+            
+            panel.gameObject.SetActive(true);
+            return panel;
+        }
+        
+        public void Release(TargetInfoPanel targetInfoPanel)
+        {
+            targetInfoPanel.Release();
+            targetInfoPanel.gameObject.SetActive(false);
+            _freePanels.Enqueue(targetInfoPanel);
         }
         
         private void Create()
@@ -33,14 +44,7 @@ namespace InputSystem.UI
 
             canvas.worldCamera = _camera;
             
-            _panels.Add(panel);
             _freePanels.Enqueue(panel);
-        }
-
-        private void Release(TargetInfoPanel targetInfoPanel)
-        {
-            targetInfoPanel.gameObject.SetActive(false);
-            _freePanels.Enqueue(targetInfoPanel);
         }
     }
 }

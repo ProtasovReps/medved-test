@@ -1,6 +1,8 @@
 ﻿using Extensions;
 using MovementSystem;
 using TargetSystem;
+using TargetSystem.Info;
+using UI;
 using UnityEngine;
 
 namespace InputSystem
@@ -18,6 +20,7 @@ namespace InputSystem
 
         [Header("UI")]
         [SerializeField] private LayerMask _targetsLayer;
+        [SerializeField] private TargetInfoPanel _prefab;
         
         private ClickReader _clickReader;
         private MoveInputReader _moveReader;
@@ -31,7 +34,7 @@ namespace InputSystem
             
             InstallTargets();
             InstallCamera();
-            InstallUI();
+            InstallInfoPanels();
             
             actions.Enable();
         }
@@ -71,11 +74,16 @@ namespace InputSystem
             _disposer.Add(cameraMovement);
         }
 
-        private void InstallUI()
+        private void InstallInfoPanels()
         {
             TargetRaycaster raycaster = new(_clickReader, _targetsLayer);
+            InfoPanelPool infoPool = new(_prefab);
+            InfoPanelDatabase database = new();
+
+            InfoPanelSwitcher switcher = new(raycaster, infoPool, database);
             
             _disposer.Add(raycaster);
+            _disposer.Add(switcher);
         }
     }
 }
