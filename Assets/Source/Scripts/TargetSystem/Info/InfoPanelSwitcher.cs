@@ -5,7 +5,7 @@ using UI;
 
 namespace TargetSystem.Info
 {
-    public class InfoPanelSwitcher : IDisposable
+    public class InfoPanelSwitcher : ITargetManager, IDisposable
     {
         private readonly IObjectObserver<Target> _targetObserver;
         private readonly InfoPanelPool _panelPool;
@@ -26,6 +26,9 @@ namespace TargetSystem.Info
             _targetObserver.Notifying += SwitchPanel;
         }
 
+        public event Action<Target> Added;
+        public event Action<Target> Removed;
+        
         public void Dispose()
         {
             for (int i = 0; i < _subscriptions.Count; i++)
@@ -38,7 +41,7 @@ namespace TargetSystem.Info
 
         private void SwitchPanel(Target target)
         {
-            if (_database.TryGet(target, out TargetInfoPanel panel))
+            if (_database.TryGetPanel(target, out TargetInfoPanel panel))
             {
                 RemovePanel(target, panel);
                 return;
@@ -51,9 +54,12 @@ namespace TargetSystem.Info
         {
             panel.ExitPressed -= SwitchPanel;
 
+            target.Outliner.Disable();;
             _subscriptions.Remove(panel);
             _panelPool.Release(panel);
             _database.Remove(target);
+            
+            Removed?.Invoke(target);
         }
 
         private void CreatePanel(Target target)
@@ -61,9 +67,12 @@ namespace TargetSystem.Info
             TargetInfoPanel newPanel = _panelPool.Get();
             newPanel.ExitPressed += SwitchPanel;
 
+            target.Outliner.Enable();
             _subscriptions.Add(newPanel);
             newPanel.Set(target);
             _database.Set(target, newPanel);
+            
+            Added?.Invoke(target);
         }
     }
 }

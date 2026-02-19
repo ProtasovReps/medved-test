@@ -11,7 +11,7 @@ namespace TargetSystem.Info
 
         public void Set(IInformationalTarget target, TargetInfoPanel newTargetInfo)
         {
-            if (TryGet(target, out _))
+            if (TryGetPanel(target, out _))
             {
                 throw new InvalidOperationException();
             }
@@ -21,7 +21,7 @@ namespace TargetSystem.Info
 
         public void Remove(IInformationalTarget target)
         {
-            if (TryGet(target, out _) == false)
+            if (TryGetPanel(target, out _) == false)
             {
                 throw new InvalidOperationException();
             }
@@ -29,7 +29,7 @@ namespace TargetSystem.Info
             _settedTargets.Remove(target);
         }
 
-        public bool TryGet(IInformationalTarget target, out TargetInfoPanel panel)
+        public bool TryGetPanel(IInformationalTarget target, out TargetInfoPanel panel)
         {
             return _settedTargets.TryGetValue(target, out panel);
         }

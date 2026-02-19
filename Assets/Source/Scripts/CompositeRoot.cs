@@ -22,6 +22,9 @@ namespace InputSystem
         [SerializeField] private LayerMask _targetsLayer;
         [SerializeField] private TargetInfoPanel _prefab;
         
+        [Header("Effects")]
+        [SerializeField] private LineRenderer _lineRenderer;
+        
         private ClickReader _clickReader;
         private MoveInputReader _moveReader;
         private Disposer _disposer;
@@ -81,9 +84,11 @@ namespace InputSystem
             InfoPanelDatabase database = new();
 
             InfoPanelSwitcher switcher = new(raycaster, infoPool, database);
+            Rope rope = new Rope(_lineRenderer, switcher);
             
             _disposer.Add(raycaster);
             _disposer.Add(switcher);
+            _disposer.Add(rope);
         }
     }
 }

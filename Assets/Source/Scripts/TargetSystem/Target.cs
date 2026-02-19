@@ -7,7 +7,7 @@ namespace TargetSystem
 {
     public class Target : MonoBehaviour, IInformationalTarget
     {
-        [SerializeField] private Outliner _outliner;
+        [SerializeField] private Outliner _outliner; // перенести
         
         private Transform _transform;
         

@@ -44,7 +44,6 @@ namespace UI
             }
 
             _target = target;
-            _target.Outliner.Enable();
             _cancellationTokenSource = new CancellationTokenSource();
 
             UpdateInfo().Forget();
@@ -52,7 +51,6 @@ namespace UI
 
         public void Cancel()
         { 
-            _target?.Outliner.Disable();
             _target = null;
             _cancellationTokenSource?.Cancel();
         }
