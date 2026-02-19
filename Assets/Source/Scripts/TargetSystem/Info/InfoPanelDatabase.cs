@@ -7,16 +7,16 @@ namespace TargetSystem.Info
 {
     public class InfoPanelDatabase
     {
-        private readonly Dictionary<IInformationalTarget, InfoPanel> _settedTargets = new ();
+        private readonly Dictionary<IInformationalTarget, TargetInfoPanel> _settedTargets = new ();
 
-        public void Set(IInformationalTarget target, InfoPanel newInfo)
+        public void Set(IInformationalTarget target, TargetInfoPanel newTargetInfo)
         {
             if (TryGet(target, out _))
             {
                 throw new InvalidOperationException();
             }
 
-            _settedTargets.Add(target, newInfo);
+            _settedTargets.Add(target, newTargetInfo);
         }
 
         public void Remove(IInformationalTarget target)
@@ -29,7 +29,7 @@ namespace TargetSystem.Info
             _settedTargets.Remove(target);
         }
 
-        public bool TryGet(IInformationalTarget target, out InfoPanel panel)
+        public bool TryGet(IInformationalTarget target, out TargetInfoPanel panel)
         {
             return _settedTargets.TryGetValue(target, out panel);
         }

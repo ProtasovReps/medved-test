@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using Interface;
+using TargetSystem;
 using TargetSystem.Info;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,17 +9,17 @@ using UnityEngine.UI;
 namespace UI
 {
     [RequireComponent(typeof(Canvas))]
-    public class InfoPanel : MonoBehaviour
+    public class TargetInfoPanel : MonoBehaviour
     {
         [SerializeField] private TargetInfo _info;
         [SerializeField] private float _verticalOffeset;
         [SerializeField] private Transform _transform;
         [SerializeField] private Button _exitButton;
         
-        private IInformationalTarget _target;
+        private Target _target;
         private CancellationTokenSource _cancellationTokenSource;
 
-        public event Action<IInformationalTarget> ExitPressed;
+        public event Action<Target> ExitPressed;
 
         private void OnEnable()
         {
@@ -36,7 +36,7 @@ namespace UI
             Cancel();
         }
 
-        public void Set(IInformationalTarget target)
+        public void Set(Target target)
         {
             if (_target != null)
             {
@@ -44,13 +44,15 @@ namespace UI
             }
 
             _target = target;
+            _target.Outliner.Enable();
             _cancellationTokenSource = new CancellationTokenSource();
 
             UpdateInfo().Forget();
         }
 
         public void Cancel()
-        {
+        { 
+            _target?.Outliner.Disable();
             _target = null;
             _cancellationTokenSource?.Cancel();
         }
@@ -61,7 +63,7 @@ namespace UI
             {
                 _transform.position = new Vector3(_target.Position.x, 0, _target.Position.z + _verticalOffeset);
                 
-                _info.Update(_target.Name, _target.Position);
+                _info.Update(_target);
                 await UniTask.Yield(_cancellationTokenSource.Token, true);
             }
         }

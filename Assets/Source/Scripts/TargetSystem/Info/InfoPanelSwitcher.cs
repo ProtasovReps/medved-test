@@ -7,17 +7,17 @@ namespace TargetSystem.Info
 {
     public class InfoPanelSwitcher : IDisposable
     {
-        private readonly IObjectObserver<IInformationalTarget> _targetObserver;
+        private readonly IObjectObserver<Target> _targetObserver;
         private readonly InfoPanelPool _panelPool;
         private readonly InfoPanelDatabase _database;
-        private readonly List<InfoPanel> _subscriptions;
+        private readonly List<TargetInfoPanel> _subscriptions;
 
         public InfoPanelSwitcher(
-            IObjectObserver<IInformationalTarget> targetObserver,
+            IObjectObserver<Target> targetObserver,
             InfoPanelPool panelPool,
             InfoPanelDatabase database)
         {
-            _subscriptions = new List<InfoPanel>();
+            _subscriptions = new List<TargetInfoPanel>();
 
             _targetObserver = targetObserver;
             _panelPool = panelPool;
@@ -36,9 +36,9 @@ namespace TargetSystem.Info
             _targetObserver.Notifying -= SwitchPanel;
         }
 
-        private void SwitchPanel(IInformationalTarget target)
+        private void SwitchPanel(Target target)
         {
-            if (_database.TryGet(target, out InfoPanel panel))
+            if (_database.TryGet(target, out TargetInfoPanel panel))
             {
                 RemovePanel(target, panel);
                 return;
@@ -47,7 +47,7 @@ namespace TargetSystem.Info
             CreatePanel(target);
         }
 
-        private void RemovePanel(IInformationalTarget target, InfoPanel panel)
+        private void RemovePanel(Target target, TargetInfoPanel panel)
         {
             panel.ExitPressed -= SwitchPanel;
 
@@ -56,9 +56,9 @@ namespace TargetSystem.Info
             _database.Remove(target);
         }
 
-        private void CreatePanel(IInformationalTarget target)
+        private void CreatePanel(Target target)
         {
-            InfoPanel newPanel = _panelPool.Get();
+            TargetInfoPanel newPanel = _panelPool.Get();
             newPanel.ExitPressed += SwitchPanel;
 
             _subscriptions.Add(newPanel);
