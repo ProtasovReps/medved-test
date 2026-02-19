@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Extensions
 {
-    public class TargetRaycaster : IObjectObserver<Target>, IDisposable 
+    public class TargetRaycaster : IObjectObserver<IInformationalTarget>, IDisposable 
     {
         private const float MaxRaycastDistance = 100f;
 
@@ -25,7 +25,7 @@ namespace Extensions
             _clickObserver.Notifying += OnClicked;
         }
 
-        public event Action<Target> Notifying;
+        public event Action<IInformationalTarget> Notifying;
 
         public void Dispose()
         {
@@ -42,7 +42,7 @@ namespace Extensions
                 return;
             }
 
-            if (_results[0].transform.TryGetComponent(out Target target) == false)
+            if (_results[0].transform.TryGetComponent(out IInformationalTarget target) == false)
             {
                 return;
             }

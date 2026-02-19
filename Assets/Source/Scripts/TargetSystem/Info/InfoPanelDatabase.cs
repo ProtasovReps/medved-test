@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using Interface;
 using UI;
 
 namespace TargetSystem.Info
 {
     public class InfoPanelDatabase
     {
-        private readonly Dictionary<Target, TargetInfoPanel> _settedTargets = new ();
+        private readonly Dictionary<IInformationalTarget, InfoPanel> _settedTargets = new ();
 
-        public void Set(Target target, TargetInfoPanel newInfo)
+        public void Set(IInformationalTarget target, InfoPanel newInfo)
         {
-            if (TryGetInfo(target, out _))
+            if (TryGet(target, out _))
             {
                 throw new InvalidOperationException();
             }
@@ -18,9 +19,9 @@ namespace TargetSystem.Info
             _settedTargets.Add(target, newInfo);
         }
 
-        public void Remove(Target target)
+        public void Remove(IInformationalTarget target)
         {
-            if (TryGetInfo(target, out _) == false)
+            if (TryGet(target, out _) == false)
             {
                 throw new InvalidOperationException();
             }
@@ -28,7 +29,7 @@ namespace TargetSystem.Info
             _settedTargets.Remove(target);
         }
 
-        public bool TryGetInfo(Target target, out TargetInfoPanel panel)
+        public bool TryGet(IInformationalTarget target, out InfoPanel panel)
         {
             return _settedTargets.TryGetValue(target, out panel);
         }

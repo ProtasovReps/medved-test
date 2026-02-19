@@ -8,38 +8,38 @@ namespace TargetSystem.Info
     public class InfoPanelPool
     {
         private readonly Camera _camera;
-        private readonly TargetInfoPanel _prefab;
-        private readonly Queue<TargetInfoPanel> _freePanels = new ();
+        private readonly InfoPanel _prefab;
+        private readonly Queue<InfoPanel> _freePanels = new ();
         
-        public InfoPanelPool(TargetInfoPanel prefab)
+        public InfoPanelPool(InfoPanel prefab)
         {
             _prefab = prefab;
             _camera = Camera.main;
         }
        
-        public TargetInfoPanel Get()
+        public InfoPanel Get()
         {
             if (_freePanels.Count == 0)
             {
                 Create();
             }
 
-            TargetInfoPanel panel = _freePanels.Dequeue();
+            InfoPanel panel = _freePanels.Dequeue();
             
             panel.gameObject.SetActive(true);
             return panel;
         }
         
-        public void Release(TargetInfoPanel targetInfoPanel)
+        public void Release(InfoPanel infoPanel)
         {
-            targetInfoPanel.Release();
-            targetInfoPanel.gameObject.SetActive(false);
-            _freePanels.Enqueue(targetInfoPanel);
+            infoPanel.Cancel();
+            infoPanel.gameObject.SetActive(false);
+            _freePanels.Enqueue(infoPanel);
         }
         
         private void Create()
         {
-            TargetInfoPanel panel = Object.Instantiate(_prefab);
+            InfoPanel panel = Object.Instantiate(_prefab);
             Canvas canvas = panel.GetComponent<Canvas>();
 
             canvas.worldCamera = _camera;

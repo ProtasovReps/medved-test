@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Interface;
 using UI;
 
@@ -6,15 +7,18 @@ namespace TargetSystem.Info
 {
     public class InfoPanelSwitcher : IDisposable
     {
-        private readonly IObjectObserver<Target> _targetObserver;
+        private readonly IObjectObserver<IInformationalTarget> _targetObserver;
         private readonly InfoPanelPool _panelPool;
         private readonly InfoPanelDatabase _database;
-        
+        private readonly List<InfoPanel> _subscriptions;
+
         public InfoPanelSwitcher(
-            IObjectObserver<Target> targetObserver,
+            IObjectObserver<IInformationalTarget> targetObserver,
             InfoPanelPool panelPool,
             InfoPanelDatabase database)
         {
+            _subscriptions = new List<InfoPanel>();
+
             _targetObserver = targetObserver;
             _panelPool = panelPool;
             _database = database;
@@ -24,20 +28,40 @@ namespace TargetSystem.Info
 
         public void Dispose()
         {
+            for (int i = 0; i < _subscriptions.Count; i++)
+            {
+                _subscriptions[i].ExitPressed -= SwitchPanel;
+            }
+
             _targetObserver.Notifying -= SwitchPanel;
         }
-        
-        private void SwitchPanel(Target target)
+
+        private void SwitchPanel(IInformationalTarget target)
         {
-            if (_database.TryGetInfo(target, out TargetInfoPanel panel))
+            if (_database.TryGet(target, out InfoPanel panel))
             {
-                _panelPool.Release(panel);
-                _database.Remove(target);
+                RemovePanel(target, panel);
                 return;
             }
 
-            TargetInfoPanel newPanel = _panelPool.Get();
-            
+            CreatePanel(target);
+        }
+
+        private void RemovePanel(IInformationalTarget target, InfoPanel panel)
+        {
+            panel.ExitPressed -= SwitchPanel;
+
+            _subscriptions.Remove(panel);
+            _panelPool.Release(panel);
+            _database.Remove(target);
+        }
+
+        private void CreatePanel(IInformationalTarget target)
+        {
+            InfoPanel newPanel = _panelPool.Get();
+            newPanel.ExitPressed += SwitchPanel;
+
+            _subscriptions.Add(newPanel);
             newPanel.Set(target);
             _database.Set(target, newPanel);
         }

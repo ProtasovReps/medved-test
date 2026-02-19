@@ -20,7 +20,7 @@ namespace InputSystem
 
         [Header("UI")]
         [SerializeField] private LayerMask _targetsLayer;
-        [SerializeField] private TargetInfoPanel _prefab;
+        [SerializeField] private InfoPanel _prefab;
         
         private ClickReader _clickReader;
         private MoveInputReader _moveReader;
