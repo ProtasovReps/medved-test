@@ -17,7 +17,7 @@ namespace TargetSystem
             _pathParent = pathParent;
         }
 
-        public Target Produce(TargetConfig config, Vector3 position)
+        public void Produce(TargetConfig config, Vector3 position)
         {
             Target target = Object.Instantiate(config.Prefab, position, Quaternion.identity, _targetParent);
             Path path = Object.Instantiate(config.Path, position, Quaternion.identity, _pathParent);
@@ -26,7 +26,6 @@ namespace TargetSystem
             target.Initialize(config.Name);
 
             _disposer.Add(movement);
-            return target;
         }
     }
 }

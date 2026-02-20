@@ -1,7 +1,9 @@
 ﻿using Extensions;
 using MovementSystem;
 using TargetSystem;
-using TargetSystem.Info;
+using TargetSystem.Adapter;
+using TargetSystem.InfoPanel;
+using TargetSystem.Notifier;
 using UI;
 using UnityEngine;
 
@@ -20,7 +22,7 @@ namespace InputSystem
 
         [Header("UI")]
         [SerializeField] private LayerMask _targetsLayer;
-        [SerializeField] private TargetInfoPanel _prefab;
+        [SerializeField] private SwitchablePanel _prefab;
         
         [Header("Effects")]
         [SerializeField] private LineRenderer _lineRenderer;
@@ -28,7 +30,8 @@ namespace InputSystem
         private ClickReader _clickReader;
         private MoveInputReader _moveReader;
         private Disposer _disposer;
-
+        private InfoPanelPool _pool;
+        
         private void Start()
         {
             _disposer = new Disposer();
@@ -37,7 +40,12 @@ namespace InputSystem
             
             InstallTargets();
             InstallCamera();
-            InstallInfoPanels();
+            
+            SelectionNotifier notifier = InstallSelectNotification();
+            
+            InstallPanelSwitch(notifier);
+            InstallRope(notifier);
+            InstallOutline(notifier);
             
             actions.Enable();
         }
@@ -77,18 +85,43 @@ namespace InputSystem
             _disposer.Add(cameraMovement);
         }
 
-        private void InstallInfoPanels()
+        private SelectionNotifier InstallSelectNotification()
         {
-            TargetRaycaster raycaster = new(_clickReader, _targetsLayer);
-            InfoPanelPool infoPool = new(_prefab);
-            InfoPanelDatabase database = new();
-
-            InfoPanelSwitcher switcher = new(raycaster, infoPool, database);
-            Rope rope = new Rope(_lineRenderer, switcher);
+            _pool = new InfoPanelPool(_prefab);
             
+            TargetRaycaster raycaster = new (_clickReader, _targetsLayer);
+            SelectionNotifier selectionNotifier = new SelectionNotifier(raycaster);
+            NotifierExitButtonAdder adder = new NotifierExitButtonAdder(_pool, selectionNotifier);
+             
             _disposer.Add(raycaster);
+            _disposer.Add(selectionNotifier);
+            _disposer.Add(adder);
+            return selectionNotifier;
+        }
+
+        private void InstallPanelSwitch(SelectionNotifier selectionNotifier)
+        {
+            InfoPanelSwitcher switcher = new InfoPanelSwitcher(selectionNotifier, _pool);
+            
             _disposer.Add(switcher);
+        }
+
+        private void InstallRope(SelectionNotifier selectionNotifier)
+        {
+            PositionableAdapter adapter = new(selectionNotifier);
+            Rope rope = new(_lineRenderer, adapter);
+            
+            _disposer.Add(adapter);
             _disposer.Add(rope);
+        }
+        
+        private void InstallOutline(SelectionNotifier selectionNotifier)
+        {
+            OutlineAdapter adapter = new(selectionNotifier);
+            OutlineSwitcher switcher = new(adapter);
+            
+            _disposer.Add(adapter);
+            _disposer.Add(switcher);
         }
     }
 }

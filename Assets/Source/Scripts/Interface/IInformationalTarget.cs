@@ -1,10 +1,7 @@
-﻿using UnityEngine;
-
-namespace Interface
+﻿namespace Interface
 {
-    public interface IInformationalTarget
+    public interface IInformationalTarget : IPositionable
     {
         public string Name { get; }
-        public Vector3 Position { get; }
     }
 }

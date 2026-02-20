@@ -3,18 +3,17 @@ using UnityEngine;
 
 namespace Extensions
 {
-    [Serializable]
-    public class Outliner
+    public class Outline : MonoBehaviour
     {
         private const string OutlineProperty = "_OtlWidth";
 
         [SerializeField] private Renderer _renderer;
         [SerializeField] private float _enabledWidth;
         [SerializeField] private float _disabledWidth;
+        
+        private  MaterialPropertyBlock _propertyBlock;
 
-        private MaterialPropertyBlock _propertyBlock;
-
-        public void Initialize()
+        private void Awake()
         {
             _propertyBlock = new MaterialPropertyBlock();
         }

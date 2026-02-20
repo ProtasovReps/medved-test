@@ -5,31 +5,31 @@ using UnityEngine;
 
 namespace Extensions
 {
-    public class TargetRaycaster : IObjectObserver<Target>, IDisposable 
+    public class TargetRaycaster : IObjectNotifier<Target>, IDisposable 
     {
         private const float MaxRaycastDistance = 100f;
 
         private readonly RaycastHit[] _results;
         private readonly Camera _camera;
-        private readonly IObjectObserver<Vector2> _clickObserver;
+        private readonly IObjectNotifier<Vector2> _click;
         private readonly int _mask;
 
-        public TargetRaycaster(IObjectObserver<Vector2> clickObserver, LayerMask mask)
+        public TargetRaycaster(IObjectNotifier<Vector2> click, LayerMask mask)
         {
             _results = new RaycastHit[1];
             _camera = Camera.main;
 
-            _clickObserver = clickObserver;
+            _click = click;
             _mask = mask;
 
-            _clickObserver.Notifying += OnClicked;
+            _click.Notified += OnClicked;
         }
 
-        public event Action<Target> Notifying;
+        public event Action<Target> Notified;
 
         public void Dispose()
         {
-            _clickObserver.Notifying -= OnClicked;
+            _click.Notified -= OnClicked;
         }
 
         private void OnClicked(Vector2 mousePosition)
@@ -47,7 +47,7 @@ namespace Extensions
                 return;
             }
 
-            Notifying?.Invoke(target);
+            Notified?.Invoke(target);
         }
     }
 }

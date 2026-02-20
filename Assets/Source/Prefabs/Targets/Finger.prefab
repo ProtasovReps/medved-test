@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3600440250876991280}
   - component: {fileID: 8122478806017906415}
   - component: {fileID: 2274761105656655884}
+  - component: {fileID: 5320114485571780662}
   m_Layer: 6
   m_Name: Finger
   m_TagString: Untagged
@@ -104,10 +105,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e069de39103e4f9fac644ef55bab0052, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TargetSystem.Target
-  _outliner:
-    _renderer: {fileID: 3600440250876991280}
-    _enabledWidth: 5
-    _disabledWidth: 0
 --- !u!65 &2274761105656655884
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -129,3 +126,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.0000001, y: 2, z: 1.0000002}
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &5320114485571780662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2551924312188713145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a3b7f307a884eb58c09ba2735fd26b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Extensions.Outline
+  _renderer: {fileID: 3600440250876991280}
+  _enabledWidth: 5
+  _disabledWidth: 0

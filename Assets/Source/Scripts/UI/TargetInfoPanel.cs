@@ -1,42 +1,29 @@
 ﻿using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using TargetSystem;
-using TargetSystem.Info;
+using Interface;
+using TargetSystem.InfoPanel;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace UI
 {
+    [RequireComponent(typeof(TargetButton))]
     [RequireComponent(typeof(Canvas))]
     public class TargetInfoPanel : MonoBehaviour
     {
         [SerializeField] private TargetInfo _info;
         [SerializeField] private float _verticalOffeset;
         [SerializeField] private Transform _transform;
-        [SerializeField] private Button _exitButton;
         
-        private Target _target;
+        private IInformationalTarget _target;
         private CancellationTokenSource _cancellationTokenSource;
-
-        public event Action<Target> ExitPressed;
-
-        private void OnEnable()
-        {
-            _exitButton.onClick.AddListener(InvokePressed);
-        }
-
-        private void OnDisable()
-        {
-            _exitButton.onClick.RemoveListener(InvokePressed);
-        }
 
         private void OnDestroy()
         {
             Cancel();
         }
 
-        public void Set(Target target)
+        public void Set(IInformationalTarget target)
         {
             if (_target != null)
             {
@@ -64,11 +51,6 @@ namespace UI
                 _info.Update(_target);
                 await UniTask.Yield(_cancellationTokenSource.Token, true);
             }
-        }
-
-        private void InvokePressed()
-        {
-            ExitPressed?.Invoke(_target);
         }
     }
 }

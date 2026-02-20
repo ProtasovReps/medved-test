@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 namespace InputSystem
 {
-    public class ClickReader : IDisposable, IObjectObserver<Vector2>
+    public class ClickReader : IDisposable, IObjectNotifier<Vector2>
     {
         private readonly InputActions _inputActions;
         
@@ -16,7 +16,7 @@ namespace InputSystem
             _inputActions.Camera.Click.performed += OnClicked;
         }
 
-        public event Action<Vector2> Notifying;
+        public event Action<Vector2> Notified;
         
         public void Dispose()
         {
@@ -26,7 +26,7 @@ namespace InputSystem
         private void OnClicked(InputAction.CallbackContext context)
         {
             Vector2 mousePosition = _inputActions.Camera.MousePosition.ReadValue<Vector2>();
-            Notifying?.Invoke(mousePosition);
+            Notified?.Invoke(mousePosition);
         }
     }
 }

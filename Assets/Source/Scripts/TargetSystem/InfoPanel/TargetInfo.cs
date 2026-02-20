@@ -3,7 +3,7 @@ using Interface;
 using TMPro;
 using UnityEngine;
 
-namespace TargetSystem.Info
+namespace TargetSystem.InfoPanel
 {
     [Serializable]
     public class TargetInfo
