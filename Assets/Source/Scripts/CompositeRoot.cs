@@ -5,6 +5,7 @@ using TargetSystem.Adapter;
 using TargetSystem.InfoPanel;
 using TargetSystem.Notifier;
 using UI;
+using UI.Panel;
 using UnityEngine;
 
 namespace InputSystem
@@ -12,8 +13,10 @@ namespace InputSystem
     public class CompositeRoot : MonoBehaviour
     {
         [Header("Camera")]
-        [SerializeField] private float _cameraSpeed;
         [SerializeField] private Camera _camera;
+        [SerializeField] private CameraRotationPanel[] _rotationPanels;
+        [SerializeField] private float _moveSpeed;
+        [SerializeField] private float _rotationSpeed;
         
         [Header("Targets")]
         [SerializeField] private Transform _targetParent;
@@ -81,9 +84,11 @@ namespace InputSystem
         
         private void InstallCamera()
         {
-            CameraMovement cameraMovement = new(_moveReader, _cameraSpeed, _camera);
-
+            CameraMovement cameraMovement = new(_moveReader, _moveSpeed, _camera);
+            CameraRotation rotation = new(_rotationPanels, _rotationSpeed, _camera);
+            
             _disposer.Add(cameraMovement);
+            _disposer.Add(rotation);
         }
 
         private SelectionNotifier InstallSelectNotification()

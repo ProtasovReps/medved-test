@@ -2,6 +2,7 @@
 using Interface;
 using TargetSystem.Notifier;
 using UI;
+using UI.Panel;
 
 namespace TargetSystem.InfoPanel
 {

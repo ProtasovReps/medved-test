@@ -2,13 +2,12 @@
 using Interface;
 using TargetSystem;
 using UnityEngine;
-using UnityEngine.UI;
 
-namespace UI
+namespace UI.Button
 {
     public class TargetButton : MonoBehaviour, IObjectNotifier<Target>
     {
-        [SerializeField] private Button _button;
+        [SerializeField] private UnityEngine.UI.Button _button;
 
         private Target _target;
 

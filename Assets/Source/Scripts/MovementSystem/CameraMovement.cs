@@ -24,8 +24,7 @@ namespace MovementSystem
 
         protected override void OnNotified(Vector2 direction)
         {
-            Vector3 projectedDirection = new(direction.x, 0, direction.y);
-            _camera.transform.position += projectedDirection * _speed * Time.deltaTime;
+            _camera.transform.Translate(direction * _speed * Time.deltaTime, Space.Self);
         }
     }
 }

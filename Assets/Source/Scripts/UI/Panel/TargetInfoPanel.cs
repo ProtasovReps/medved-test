@@ -5,7 +5,7 @@ using Interface;
 using TargetSystem.InfoPanel;
 using UnityEngine;
 
-namespace UI
+namespace UI.Panel
 {
     [RequireComponent(typeof(Canvas))]
     public class TargetInfoPanel : MonoBehaviour

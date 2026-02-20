@@ -1,5 +1,6 @@
 ﻿using System;
 using UI;
+using UI.Panel;
 
 namespace Interface
 {

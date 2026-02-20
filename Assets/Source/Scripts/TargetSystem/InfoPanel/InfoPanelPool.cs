@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Interface;
 using UI;
+using UI.Panel;
 using UnityEngine;
 using Object = UnityEngine.Object;
 

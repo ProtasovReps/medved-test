@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using UI.Button;
+using UnityEngine;
 
-namespace UI
+namespace UI.Panel
 {
     public class SwitchablePanel : MonoBehaviour
     {
