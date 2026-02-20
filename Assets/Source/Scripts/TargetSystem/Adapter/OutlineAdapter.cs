@@ -6,33 +6,33 @@ using TargetSystem.Notifier;
 
 namespace TargetSystem.Adapter
 {
-    public class OutlineAdapter : NotifierListener<Target>, IObjectNotifier<Outline>
+    public class OutlineAdapter : SelectionListener<Target>, ISelectionNotifier<Outline>
     {
         private readonly Dictionary<Target, Outline> _targetOutlines;
         
-        public OutlineAdapter(IObjectNotifier<Target> targetNotifier)
+        public OutlineAdapter(ISelectionNotifier<Target> targetNotifier)
             : base(targetNotifier)
         {
             _targetOutlines = new Dictionary<Target, Outline>();
         }
         
-        public event Action<Outline> Notified;
-
-        protected override void OnNotified(Target target)
+        public event Action<Outline> Selected;
+        public event Action<Outline> Unselected;
+        
+        protected override void OnSelected(Target target)
         {
-            Outline outline;
-            
-            if (_targetOutlines.ContainsKey(target) == false)
+            if (_targetOutlines.TryGetValue(target, out Outline outline) == false)
             {
                 outline = target.GetComponent<Outline>();
                 _targetOutlines.Add(target, outline);
             }
-            else
-            {
-                outline = _targetOutlines[target];
-            }
             
-            Notified?.Invoke(outline);            
+            Selected?.Invoke(outline);            
+        }
+
+        protected override void OnUnselected(Target target)
+        {
+            Unselected?.Invoke(_targetOutlines[target]);
         }
     }
 }

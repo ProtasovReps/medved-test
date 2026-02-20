@@ -1,18 +1,18 @@
 ﻿using System;
 using Interface;
 
-namespace TargetSystem.Notifier
+namespace Extensions
 {
-    public abstract class NotifierListener<T> : IDisposable
+    public abstract class ObjectObserver<T> : IDisposable
     {
         private readonly IObjectNotifier<T> _notifier;
 
-        protected NotifierListener(IObjectNotifier<T> notifier)
+        protected ObjectObserver(IObjectNotifier<T> notifier)
         {
             _notifier = notifier;
             notifier.Notified += OnNotified;
         }
-
+        
         public virtual void Dispose()
         {
             _notifier.Notified -= OnNotified;

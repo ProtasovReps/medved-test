@@ -1,22 +1,27 @@
 ﻿using System;
-using Extensions;
 using Interface;
 using TargetSystem.Notifier;
 
 namespace TargetSystem.Adapter
 {
-    public class PositionableAdapter : NotifierListener<Target>, IObjectNotifier<IPositionable>
+    public class PositionableAdapter : SelectionListener<Target>, ISelectionNotifier<IPositionable>
     {
-        public PositionableAdapter(IObjectNotifier<Target> targetNotifier)
+        public PositionableAdapter(ISelectionNotifier<Target> targetNotifier)
             : base(targetNotifier)
         {
         }
 
-        public event Action<IPositionable> Notified;
+        public event Action<IPositionable> Selected;
+        public event Action<IPositionable> Unselected;
 
-        protected override void OnNotified(Target target)
+        protected override void OnSelected(Target target)
         {
-            Notified?.Invoke(target);
+            Selected?.Invoke(target);
+        }
+
+        protected override void OnUnselected(Target target)
+        {
+            Unselected?.Invoke(target);
         }
     }
 }

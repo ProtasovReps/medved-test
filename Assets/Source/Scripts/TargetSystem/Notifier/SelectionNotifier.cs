@@ -1,21 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using Extensions;
 using Interface;
 
 namespace TargetSystem.Notifier
 {
-    public class SelectionNotifier : NotifierListener<Target>, IObjectNotifier<Target>
+    public class SelectionNotifier : ObjectObserver<Target>, ISelectionNotifier<Target>
     {
-        private readonly IPanelCreator _creator;
+        private readonly INotifiablePool _creator;
+        private readonly HashSet<Target> _selectedTargets;
         private readonly List<IObjectNotifier<Target>> _subscriptions;
 
         public SelectionNotifier(IObjectNotifier<Target> objectNotifier)
             : base(objectNotifier)
         {
+            _selectedTargets = new HashSet<Target>();
             _subscriptions = new List<IObjectNotifier<Target>>();
         }
 
-        public event Action<Target> Notified;
+        public event Action<Target> Selected;
+        public event Action<Target> Unselected;
 
         public override void Dispose()
         {
@@ -27,7 +31,7 @@ namespace TargetSystem.Notifier
             }
         }
 
-        public void Subscribe(IObjectNotifier<Target> notifier)
+        public void AddSubscribtion(IObjectNotifier<Target> notifier)
         {
             if (_subscriptions.Contains(notifier))
             {
@@ -41,7 +45,16 @@ namespace TargetSystem.Notifier
 
         protected override void OnNotified(Target target)
         {
-            Notified?.Invoke(target);
+            if (_selectedTargets.Contains(target))
+            {
+                _selectedTargets.Remove(target);
+                Unselected?.Invoke(target);
+            }
+            else
+            {
+                _selectedTargets.Add(target);
+                Selected?.Invoke(target);
+            }
         }
     }
 }

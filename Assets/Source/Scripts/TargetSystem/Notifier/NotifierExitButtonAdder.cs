@@ -6,13 +6,13 @@ namespace TargetSystem.Notifier
 {
     public class NotifierExitButtonAdder : IDisposable
     {
-        private readonly IPanelCreator _creator;
-        private readonly SelectionNotifier _notifier;
+        private readonly INotifiablePool _creator;
+        private readonly SelectionNotifier _selection;
 
-        public NotifierExitButtonAdder(IPanelCreator creator, SelectionNotifier notifier)
+        public NotifierExitButtonAdder(INotifiablePool creator, SelectionNotifier selection)
         {
             _creator = creator;
-            _notifier = notifier;
+            _selection = selection;
 
             _creator.Created += OnCreated;
         }
@@ -24,7 +24,7 @@ namespace TargetSystem.Notifier
 
         private void OnCreated(SwitchablePanel panel)
         {
-            _notifier.Subscribe(panel.ExitButton);
+            _selection.AddSubscribtion(panel.ExitButton);
         }
     }
 }

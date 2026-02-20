@@ -3,7 +3,7 @@ using UI;
 
 namespace Interface
 {
-    public interface IPanelCreator
+    public interface INotifiablePool
     {
         public event Action<SwitchablePanel> Created;
     }

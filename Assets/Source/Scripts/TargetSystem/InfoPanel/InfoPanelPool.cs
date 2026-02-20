@@ -7,16 +7,16 @@ using Object = UnityEngine.Object;
 
 namespace TargetSystem.InfoPanel
 {
-    public class InfoPanelPool : IPanelCreator
+    public class InfoPanelPool : INotifiablePool
     {
         private readonly Camera _camera;
         private readonly SwitchablePanel _prefab;
         private readonly Queue<SwitchablePanel> _freePanels = new ();
         
-        public InfoPanelPool(SwitchablePanel prefab)
+        public InfoPanelPool(SwitchablePanel prefab, Camera camera)
         {
             _prefab = prefab;
-            _camera = Camera.main;
+            _camera = camera;
         }
 
         public event Action<SwitchablePanel> Created;

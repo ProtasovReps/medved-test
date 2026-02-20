@@ -13,6 +13,7 @@ namespace InputSystem
     {
         [Header("Camera")]
         [SerializeField] private float _cameraSpeed;
+        [SerializeField] private Camera _camera;
         
         [Header("Targets")]
         [SerializeField] private Transform _targetParent;
@@ -41,11 +42,11 @@ namespace InputSystem
             InstallTargets();
             InstallCamera();
             
-            SelectionNotifier notifier = InstallSelectNotification();
+            SelectionNotifier selection = InstallSelectNotification();
             
-            InstallPanelSwitch(notifier);
-            InstallRope(notifier);
-            InstallOutline(notifier);
+            InstallPanelSwitch(selection);
+            InstallRope(selection);
+            InstallOutline(selection);
             
             actions.Enable();
         }
@@ -80,16 +81,16 @@ namespace InputSystem
         
         private void InstallCamera()
         {
-            CameraMovement cameraMovement = new(_moveReader, _cameraSpeed);
+            CameraMovement cameraMovement = new(_moveReader, _cameraSpeed, _camera);
 
             _disposer.Add(cameraMovement);
         }
 
         private SelectionNotifier InstallSelectNotification()
         {
-            _pool = new InfoPanelPool(_prefab);
+            _pool = new InfoPanelPool(_prefab, _camera);
             
-            TargetRaycaster raycaster = new (_clickReader, _targetsLayer);
+            TargetRaycaster raycaster = new (_clickReader, _targetsLayer, _camera);
             SelectionNotifier selectionNotifier = new SelectionNotifier(raycaster);
             NotifierExitButtonAdder adder = new NotifierExitButtonAdder(_pool, selectionNotifier);
              

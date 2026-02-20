@@ -7,7 +7,6 @@ using UnityEngine;
 
 namespace UI
 {
-    [RequireComponent(typeof(TargetButton))]
     [RequireComponent(typeof(Canvas))]
     public class TargetInfoPanel : MonoBehaviour
     {

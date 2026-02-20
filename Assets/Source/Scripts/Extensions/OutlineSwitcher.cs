@@ -1,31 +1,23 @@
-﻿using System.Collections.Generic;
-using Interface;
+﻿using Interface;
 using TargetSystem.Notifier;
 
 namespace Extensions
 {
-    public class OutlineSwitcher : NotifierListener<Outline>
+    public class OutlineSwitcher : SelectionListener<Outline>
     {
-        private readonly HashSet<Outline> _outlines;
-
-        public OutlineSwitcher(IObjectNotifier<Outline> notifier)
+        public OutlineSwitcher(ISelectionNotifier<Outline> notifier)
             : base(notifier)
         {
-            _outlines = new HashSet<Outline>();
         }
 
-        protected override void OnNotified(Outline outline)
+        protected override void OnSelected(Outline outline)
         {
-            if (_outlines.Contains(outline))
-            {
-                outline.Disable();
-                _outlines.Remove(outline);
-            }
-            else
-            {
-                outline.Enable();
-                _outlines.Add(outline);
-            }
+            outline.Enable();
+        }
+
+        protected override void OnUnselected(Outline outline)
+        {
+            outline.Disable();
         }
     }
 }

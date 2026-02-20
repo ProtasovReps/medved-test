@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Extensions
 {
-    public class Rope : NotifierListener<IPositionable>
+    public class Rope : SelectionListener<IPositionable>
     {
         private const int MinTargetCount = 2;
 
@@ -16,7 +16,7 @@ namespace Extensions
 
         private CancellationTokenSource _cancellationTokenSource;
 
-        public Rope(LineRenderer lineRenderer, IObjectNotifier<IPositionable> notifier)
+        public Rope(LineRenderer lineRenderer, ISelectionNotifier<IPositionable> notifier)
             : base(notifier)
         {
             _targets = new List<IPositionable>();
@@ -31,17 +31,17 @@ namespace Extensions
             _cancellationTokenSource?.Dispose();
         }
 
-        protected override void OnNotified(IPositionable positionable)
+        protected override void OnSelected(IPositionable positionable)
         {
-            if (_targets.Contains(positionable))
-            {
-                _targets.Remove(positionable);
-            }
-            else
-            {
-                _targets.Add(positionable);
-            }
+            _targets.Add(positionable);
 
+            ManageRope();
+        }
+
+        protected override void OnUnselected(IPositionable positionable)
+        {
+            _targets.Remove(positionable);
+            
             ManageRope();
         }
 

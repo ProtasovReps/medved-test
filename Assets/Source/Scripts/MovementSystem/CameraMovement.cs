@@ -1,35 +1,28 @@
 ﻿using System;
+using Extensions;
 using Interface;
 using UnityEngine;
 
 namespace MovementSystem
 {
-    public class CameraMovement : IDisposable
+    public class CameraMovement : ObjectObserver<Vector2>
     {
         private readonly Transform _camera;
-        private readonly IObjectNotifier<Vector2> _input;
         private readonly float _speed;
-        
-        public CameraMovement(IObjectNotifier<Vector2> input, float speed)
+
+        public CameraMovement(IObjectNotifier<Vector2> input, float speed, Camera camera)
+            : base(input)
         {
             if (speed <= 0f)
             {
                 throw new ArgumentOutOfRangeException(nameof(speed));
             }
-            
-            _camera = Camera.main.transform;
-            _input = input;
+
+            _camera = camera.transform;
             _speed = speed;
-
-            _input.Notified += Translate;
         }
 
-        public void Dispose()
-        {
-            _input.Notified -= Translate;
-        }
-
-        private void Translate(Vector2 direction)
+        protected override void OnNotified(Vector2 direction)
         {
             Vector3 projectedDirection = new(direction.x, 0, direction.y);
             _camera.transform.position += projectedDirection * _speed * Time.deltaTime;
