@@ -12,7 +12,7 @@ namespace UI.Panel
 
         public event Action<int> Rotating;
         public event Action Stopped;
-        
+
         public void OnPointerEnter(PointerEventData eventData)
         {
             Rotating?.Invoke((int)_side);

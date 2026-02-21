@@ -1,6 +1,5 @@
 ﻿using System;
 using Interface;
-using UI;
 using UI.Panel;
 
 namespace TargetSystem.Notifier

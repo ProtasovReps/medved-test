@@ -27,7 +27,7 @@ namespace UI.Button
         {
             _target = target;
         }
-        
+
         private void OnPressed()
         {
             if (_target == null)

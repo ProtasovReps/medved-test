@@ -19,7 +19,7 @@ namespace MovementSystem
         public CycledMovement(Transform figure, Path path, float speed)
         {
             Vector3[] targets = path.PathPoints.ToArray();
-            
+
             if (targets.Length == 0)
             {
                 throw new ArgumentOutOfRangeException(nameof(targets));
@@ -30,7 +30,7 @@ namespace MovementSystem
             _figure = figure;
             _targets = targets;
             _speed = speed;
-            
+
             MoveCycled().Forget();
         }
 
@@ -48,7 +48,7 @@ namespace MovementSystem
                 {
                     _currentIndex = _targets.GetCycledIndex(_currentIndex);
                 }
-                
+
                 _figure.position = Vector3.MoveTowards(
                     _figure.position,
                     _targets[_currentIndex],

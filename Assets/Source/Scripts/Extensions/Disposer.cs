@@ -5,7 +5,7 @@ namespace Extensions
 {
     public class Disposer
     {
-        private readonly List<IDisposable> _disposables = new ();
+        private readonly List<IDisposable> _disposables = new();
 
         public void Add(IDisposable disposable)
         {
@@ -13,7 +13,7 @@ namespace Extensions
             {
                 throw new ArgumentException(nameof(disposable));
             }
-            
+
             _disposables.Add(disposable);
         }
 

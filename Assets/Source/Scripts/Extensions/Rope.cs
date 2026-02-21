@@ -41,7 +41,7 @@ namespace Extensions
         protected override void OnUnselected(IPositionable positionable)
         {
             _targets.Remove(positionable);
-            
+
             ManageRope();
         }
 

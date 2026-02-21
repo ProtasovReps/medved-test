@@ -13,13 +13,13 @@ namespace TargetSystem.Notifier
             notifier.Selected += OnSelected;
             notifier.Unselected += OnUnselected;
         }
-        
+
         public virtual void Dispose()
         {
             _notifier.Selected -= OnSelected;
             _notifier.Unselected -= OnUnselected;
         }
-        
+
         protected abstract void OnSelected(T notifiable);
 
         protected abstract void OnUnselected(T target);

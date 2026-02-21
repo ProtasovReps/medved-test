@@ -21,7 +21,7 @@ namespace TargetSystem
         {
             Target target = Object.Instantiate(config.Prefab, position, Quaternion.identity, _targetParent);
             Path path = Object.Instantiate(config.Path, position, Quaternion.identity, _pathParent);
-            CycledMovement movement = new (target.transform, path, config.MoveSpeed);
+            CycledMovement movement = new(target.transform, path, config.MoveSpeed);
 
             target.Initialize(config.Name);
 

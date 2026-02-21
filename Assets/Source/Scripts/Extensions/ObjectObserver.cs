@@ -12,12 +12,12 @@ namespace Extensions
             _notifier = notifier;
             notifier.Notified += OnNotified;
         }
-        
+
         public virtual void Dispose()
         {
             _notifier.Notified -= OnNotified;
         }
-        
+
         protected abstract void OnNotified(T notifiable);
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Interface;
-using UI;
 using UI.Panel;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -12,8 +11,8 @@ namespace TargetSystem.InfoPanel
     {
         private readonly Camera _camera;
         private readonly SwitchablePanel _prefab;
-        private readonly Queue<SwitchablePanel> _freePanels = new ();
-        
+        private readonly Queue<SwitchablePanel> _freePanels = new();
+
         public InfoPanelPool(SwitchablePanel prefab, Camera camera)
         {
             _prefab = prefab;
@@ -21,7 +20,7 @@ namespace TargetSystem.InfoPanel
         }
 
         public event Action<SwitchablePanel> Created;
-        
+
         public SwitchablePanel Get()
         {
             if (_freePanels.Count == 0)
@@ -30,17 +29,17 @@ namespace TargetSystem.InfoPanel
             }
 
             SwitchablePanel panel = _freePanels.Dequeue();
-            
+
             panel.gameObject.SetActive(true);
             return panel;
         }
-        
+
         public void Release(SwitchablePanel targetInfoPanel)
         {
             targetInfoPanel.gameObject.SetActive(false);
             _freePanels.Enqueue(targetInfoPanel);
         }
-        
+
         private void Create()
         {
             SwitchablePanel panel = Object.Instantiate(_prefab);
@@ -48,7 +47,7 @@ namespace TargetSystem.InfoPanel
 
             panel.Panel.Initialize(_camera);
             canvas.worldCamera = _camera;
-            
+
             _freePanels.Enqueue(panel);
             Created?.Invoke(panel);
         }

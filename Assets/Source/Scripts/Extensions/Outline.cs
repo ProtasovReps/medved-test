@@ -9,13 +9,13 @@ namespace Extensions
         [SerializeField] private Renderer _renderer;
         [SerializeField] private float _enabledWidth;
         [SerializeField] private float _disabledWidth;
-        
+
         private MaterialPropertyBlock _propertyBlock;
 
         private void Awake()
         {
             _propertyBlock = new MaterialPropertyBlock();
-            
+
             SetBlock(_disabledWidth);
         }
 

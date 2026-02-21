@@ -11,12 +11,12 @@ namespace UI.Panel
     {
         [SerializeField] private TargetInfo _info;
         [SerializeField] private float _upOffset;
-        
+
         private IInformationalTarget _target;
         private CancellationTokenSource _cancellationTokenSource;
         private Camera _camera;
         private Transform _transform;
-        
+
         private void OnDestroy()
         {
             Cancel();
@@ -27,7 +27,7 @@ namespace UI.Panel
             _camera = camera;
             _transform = transform;
         }
-        
+
         public void Set(IInformationalTarget target)
         {
             if (_target != null)
@@ -42,7 +42,7 @@ namespace UI.Panel
         }
 
         public void Cancel()
-        { 
+        {
             _target = null;
             _cancellationTokenSource?.Cancel();
         }
@@ -51,9 +51,13 @@ namespace UI.Panel
         {
             while (_cancellationTokenSource?.IsCancellationRequested == false)
             {
-                _transform.position = new Vector3(_target.Position.x, _target.Position.y + _upOffset, _target.Position.z);
+                _transform.position = new Vector3(
+                    _target.Position.x,
+                    _target.Position.y + _upOffset,
+                    _target.Position.z);
+
                 _transform.rotation = _camera.transform.rotation;
-                
+
                 _info.Update(_target);
                 await UniTask.Yield(_cancellationTokenSource.Token, true);
             }

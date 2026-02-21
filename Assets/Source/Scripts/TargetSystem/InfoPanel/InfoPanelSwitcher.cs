@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Interface;
 using TargetSystem.Notifier;
-using UI;
 using UI.Panel;
 
 namespace TargetSystem.InfoPanel
@@ -25,7 +24,7 @@ namespace TargetSystem.InfoPanel
 
             newPanel.Panel.Set(notifiable);
             newPanel.ExitButton.Set(notifiable);
-            
+
             _settedTargets.Add(notifiable, newPanel);
         }
 

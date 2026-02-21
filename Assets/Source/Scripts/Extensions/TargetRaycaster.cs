@@ -14,7 +14,7 @@ namespace Extensions
         private readonly int _mask;
 
         public TargetRaycaster(IObjectNotifier<Vector2> clickNotifier, LayerMask mask, Camera camera)
-        : base (clickNotifier)
+            : base(clickNotifier)
         {
             _results = new RaycastHit[1];
 

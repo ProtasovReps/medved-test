@@ -12,45 +12,45 @@ namespace InputSystem
 {
     public class CompositeRoot : MonoBehaviour
     {
-        [Header("Camera")]
+        [Header("Camera")] 
         [SerializeField] private Camera _camera;
         [SerializeField] private CameraRotationPanel[] _rotationPanels;
         [SerializeField] private float _moveSpeed;
         [SerializeField] private float _rotationSpeed;
-        
-        [Header("Targets")]
+
+        [Header("Targets")] 
         [SerializeField] private Transform _targetParent;
         [SerializeField] private Transform _pathParent;
         [SerializeField] private TargetConfig[] _targetConfigs;
         [SerializeField] private Transform[] _spawnPoints;
 
-        [Header("UI")]
+        [Header("UI")] 
         [SerializeField] private LayerMask _targetsLayer;
         [SerializeField] private SwitchablePanel _prefab;
-        
-        [Header("Effects")]
+
+        [Header("Effects")] 
         [SerializeField] private LineRenderer _lineRenderer;
-        
+
         private ClickReader _clickReader;
         private MoveInputReader _moveReader;
         private Disposer _disposer;
         private InfoPanelPool _pool;
-        
+
         private void Start()
         {
             _disposer = new Disposer();
 
             InputActions actions = InstallInput();
-            
+
             InstallTargets();
             InstallCamera();
-            
+
             SelectionNotifier selection = InstallSelectNotification();
-            
+
             InstallPanelSwitch(selection);
             InstallRope(selection);
             InstallOutline(selection);
-            
+
             actions.Enable();
         }
 
@@ -68,25 +68,25 @@ namespace InputSystem
                 targetFactory.Produce(_targetConfigs[i], _spawnPoints[i].position);
             }
         }
-        
+
         private InputActions InstallInput()
         {
             InputActions actions = new();
-            
+
             _clickReader = new(actions);
             _moveReader = new(actions);
-            
+
             _disposer.Add(actions);
             _disposer.Add(_moveReader);
             _disposer.Add(_clickReader);
             return actions;
         }
-        
+
         private void InstallCamera()
         {
             CameraMovement cameraMovement = new(_moveReader, _moveSpeed, _camera);
             CameraRotation rotation = new(_rotationPanels, _rotationSpeed, _camera);
-            
+
             _disposer.Add(cameraMovement);
             _disposer.Add(rotation);
         }
@@ -94,11 +94,11 @@ namespace InputSystem
         private SelectionNotifier InstallSelectNotification()
         {
             _pool = new InfoPanelPool(_prefab, _camera);
-            
-            TargetRaycaster raycaster = new (_clickReader, _targetsLayer, _camera);
+
+            TargetRaycaster raycaster = new(_clickReader, _targetsLayer, _camera);
             SelectionNotifier selectionNotifier = new SelectionNotifier(raycaster);
             NotifierExitButtonAdder adder = new NotifierExitButtonAdder(_pool, selectionNotifier);
-             
+
             _disposer.Add(raycaster);
             _disposer.Add(selectionNotifier);
             _disposer.Add(adder);
@@ -108,7 +108,7 @@ namespace InputSystem
         private void InstallPanelSwitch(SelectionNotifier selectionNotifier)
         {
             InfoPanelSwitcher switcher = new InfoPanelSwitcher(selectionNotifier, _pool);
-            
+
             _disposer.Add(switcher);
         }
 
@@ -116,16 +116,16 @@ namespace InputSystem
         {
             PositionableAdapter adapter = new(selectionNotifier);
             Rope rope = new(_lineRenderer, adapter);
-            
+
             _disposer.Add(adapter);
             _disposer.Add(rope);
         }
-        
+
         private void InstallOutline(SelectionNotifier selectionNotifier)
         {
             OutlineAdapter adapter = new(selectionNotifier);
             OutlineSwitcher switcher = new(adapter);
-            
+
             _disposer.Add(adapter);
             _disposer.Add(switcher);
         }
