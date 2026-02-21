@@ -48,12 +48,13 @@ namespace MovementSystem
                 {
                     _currentIndex = _targets.GetCycledIndex(_currentIndex);
                 }
-
+                
                 _figure.position = Vector3.MoveTowards(
                     _figure.position,
                     _targets[_currentIndex],
                     _speed * Time.deltaTime);
 
+                _figure.LookAt(_targets[_currentIndex]);
                 await UniTask.Yield();
             }
         }

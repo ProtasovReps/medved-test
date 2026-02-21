@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TargetSystem.TargetConfig
   <Prefab>k__BackingField: {fileID: 3949023949268277737, guid: b8547dafe0afd984fbe84eed4f53a9f8, type: 3}
   <Name>k__BackingField: Usurper
-  <MoveSpeed>k__BackingField: 6
+  <MoveSpeed>k__BackingField: 1
   <Path>k__BackingField: {fileID: 333689192716518876, guid: 9fb1336e618b92d49a721d3e5a4c5e89, type: 3}

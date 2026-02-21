@@ -266,6 +266,7 @@ GameObject:
   - component: {fileID: 1297105109336175669}
   - component: {fileID: 5615934543703617153}
   - component: {fileID: 1454303860746048779}
+  - component: {fileID: 4450674661128935973}
   m_Layer: 6
   m_Name: GreenEater
   m_TagString: Untagged
@@ -338,6 +339,28 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.04, y: 4.9185486, z: 9.580456}
   m_Center: {x: 0, y: 1.7342744, z: -1.424984}
+--- !u!95 &4450674661128935973
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 952508073375989611}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 063e65bf9ea59ea44bb459f4b7490fd3, type: 3}
+  m_Controller: {fileID: 9100000, guid: 3705d3d72efc1104fa7fa5b1ae6aa552, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1075317930681234763
 GameObject:
   m_ObjectHideFlags: 0
@@ -925,7 +948,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5174160425726827905}
   - component: {fileID: 4308454320032780841}
-  - component: {fileID: 5263889350698562316}
   m_Layer: 6
   m_Name: DragonSoulEater
   m_TagString: Untagged
@@ -1065,28 +1087,6 @@ SkinnedMeshRenderer:
     m_Center: {x: 17.107727, y: -41.969696, z: 15.215744}
     m_Extent: {x: 528.9893, y: 309.98465, z: 290.71405}
   m_DirtyAABB: 0
---- !u!95 &5263889350698562316
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4942330210881907089}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 063e65bf9ea59ea44bb459f4b7490fd3, type: 3}
-  m_Controller: {fileID: 9100000, guid: 3705d3d72efc1104fa7fa5b1ae6aa552, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5390150026388684634
 GameObject:
   m_ObjectHideFlags: 0

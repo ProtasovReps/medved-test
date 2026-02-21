@@ -624,6 +624,7 @@ GameObject:
   - component: {fileID: 7953852764534715825}
   - component: {fileID: 6580441885555338514}
   - component: {fileID: 6716729643434433580}
+  - component: {fileID: 1071466975757938430}
   m_Layer: 6
   m_Name: BlueNightmare
   m_TagString: Untagged
@@ -696,6 +697,28 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 5.46, y: 4.6630077, z: 9.46}
   m_Center: {x: 0, y: 1.8315039, z: 0}
+--- !u!95 &1071466975757938430
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1954472873482493186}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 2f4e6492f506bbb4a8aeba850e3bb52f, type: 3}
+  m_Controller: {fileID: 9100000, guid: 08f6634017a8e784a8807f193b72bec9, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2243253114042006428
 GameObject:
   m_ObjectHideFlags: 0
@@ -1986,7 +2009,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4040641258255505730}
   - component: {fileID: 7197259662718410771}
-  - component: {fileID: 8198937727046839390}
   m_Layer: 6
   m_Name: NightMareDragon
   m_TagString: Untagged
@@ -2139,28 +2161,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -66.486176, y: -80.032745, z: -2.3920593}
     m_Extent: {x: 591.7075, y: 271.15985, z: 377.18967}
   m_DirtyAABB: 0
---- !u!95 &8198937727046839390
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7587641068602806111}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 2f4e6492f506bbb4a8aeba850e3bb52f, type: 3}
-  m_Controller: {fileID: 9100000, guid: 08f6634017a8e784a8807f193b72bec9, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7637914952577857981
 GameObject:
   m_ObjectHideFlags: 0

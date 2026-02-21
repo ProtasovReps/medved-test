@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TargetSystem.TargetConfig
   <Prefab>k__BackingField: {fileID: 1297105109336175669, guid: 8d7ad5bd39ce75d42be220850d49cec0, type: 3}
   <Name>k__BackingField: Green Eater
-  <MoveSpeed>k__BackingField: 1
+  <MoveSpeed>k__BackingField: 0.5
   <Path>k__BackingField: {fileID: 7343358453284317795, guid: 11214d3a2eb500545b8d02d907d8bcfa, type: 3}

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TargetSystem.TargetConfig
   <Prefab>k__BackingField: {fileID: 7813529176889576528, guid: bb5ecebd847f11d4c9c7cece10518425, type: 3}
   <Name>k__BackingField: Grey Eater
-  <MoveSpeed>k__BackingField: 5
+  <MoveSpeed>k__BackingField: 0.7
   <Path>k__BackingField: {fileID: 847750968450226427, guid: 270e1e93f7dd9a048b67e8a3406974b6, type: 3}

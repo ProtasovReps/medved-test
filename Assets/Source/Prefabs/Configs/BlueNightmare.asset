@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TargetSystem.TargetConfig
   <Prefab>k__BackingField: {fileID: 7953852764534715825, guid: e0637f0b6606b4c40883cb68b287592e, type: 3}
   <Name>k__BackingField: Nightmare
-  <MoveSpeed>k__BackingField: 2.5
+  <MoveSpeed>k__BackingField: 0.8
   <Path>k__BackingField: {fileID: 4773254938309596017, guid: e984057c425c0f84e8664d406531ddf8, type: 3}

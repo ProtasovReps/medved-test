@@ -2342,7 +2342,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3378391997340541298}
   - component: {fileID: 4418907078003453741}
-  - component: {fileID: 768192233825980434}
   m_Layer: 6
   m_Name: Dragon
   m_TagString: Untagged
@@ -2544,28 +2543,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -33.476685, y: 41.865738, z: 26.524048}
     m_Extent: {x: 774.87854, y: 299.23724, z: 584.7963}
   m_DirtyAABB: 0
---- !u!95 &768192233825980434
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5257542493456068451}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 79b50b34e44b5fd4db1cdc9535a3c86b, type: 3}
-  m_Controller: {fileID: 9100000, guid: 5bd61d42e42f44b4a922495212e06f3f, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5271647279529694038
 GameObject:
   m_ObjectHideFlags: 0
@@ -2808,6 +2785,7 @@ GameObject:
   - component: {fileID: 3949023949268277737}
   - component: {fileID: 95061421156194949}
   - component: {fileID: 525819708900212012}
+  - component: {fileID: 5321224296003484656}
   m_Layer: 6
   m_Name: RedUsurper
   m_TagString: Untagged
@@ -2880,6 +2858,28 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 6.02, y: 4.9638615, z: 12.707843}
   m_Center: {x: 0, y: 1.9819293, z: 0.013442636}
+--- !u!95 &5321224296003484656
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5924881672845996099}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 79b50b34e44b5fd4db1cdc9535a3c86b, type: 3}
+  m_Controller: {fileID: 9100000, guid: 5bd61d42e42f44b4a922495212e06f3f, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6018232125435814524
 GameObject:
   m_ObjectHideFlags: 0

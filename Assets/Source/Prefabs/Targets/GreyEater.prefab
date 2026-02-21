@@ -1004,7 +1004,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7311147210562183885}
   - component: {fileID: 8982135959766379253}
-  - component: {fileID: 3516841607044443088}
   m_Layer: 6
   m_Name: DragonSoulEater
   m_TagString: Untagged
@@ -1144,28 +1143,6 @@ SkinnedMeshRenderer:
     m_Center: {x: 17.107727, y: -41.969696, z: 15.215744}
     m_Extent: {x: 528.9893, y: 309.98465, z: 290.71405}
   m_DirtyAABB: 0
---- !u!95 &3516841607044443088
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5146258468140892094}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 063e65bf9ea59ea44bb459f4b7490fd3, type: 3}
-  m_Controller: {fileID: 9100000, guid: 3705d3d72efc1104fa7fa5b1ae6aa552, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5279778074489374105
 GameObject:
   m_ObjectHideFlags: 0
@@ -2135,6 +2112,7 @@ GameObject:
   - component: {fileID: 7813529176889576528}
   - component: {fileID: 1806171058738528847}
   - component: {fileID: 7624863935275639766}
+  - component: {fileID: 4644371540101777218}
   m_Layer: 6
   m_Name: GreyEater
   m_TagString: Untagged
@@ -2207,3 +2185,25 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4.2666674, y: 4.5365005, z: 10.319899}
   m_Center: {x: -0.1592943, y: 1.7682483, z: -1.5427113}
+--- !u!95 &4644371540101777218
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9074154572033041196}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 063e65bf9ea59ea44bb459f4b7490fd3, type: 3}
+  m_Controller: {fileID: 9100000, guid: 3705d3d72efc1104fa7fa5b1ae6aa552, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
