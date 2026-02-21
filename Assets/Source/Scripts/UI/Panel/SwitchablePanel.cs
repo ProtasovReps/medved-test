@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace UI.Panel
 {
+    [RequireComponent(typeof(Canvas))]
     public class SwitchablePanel : MonoBehaviour
     {
         [field: SerializeField] public TargetInfoPanel Panel { get; private set; }

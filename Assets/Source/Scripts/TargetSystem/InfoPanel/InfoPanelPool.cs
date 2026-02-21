@@ -46,6 +46,7 @@ namespace TargetSystem.InfoPanel
             SwitchablePanel panel = Object.Instantiate(_prefab);
             Canvas canvas = panel.GetComponent<Canvas>();
 
+            panel.Panel.Initialize(_camera);
             canvas.worldCamera = _camera;
             
             _freePanels.Enqueue(panel);
