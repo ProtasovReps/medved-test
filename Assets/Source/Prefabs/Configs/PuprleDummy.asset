@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0f7962c09525a741a51fe0fd2635d37, type: 3}
+  m_Name: PuprleDummy
+  m_EditorClassIdentifier: Assembly-CSharp::TargetSystem.TargetConfig
+  <Prefab>k__BackingField: {fileID: 6793136241828092250, guid: 58a3151b07105064d98c808aff582c2e, type: 3}
+  <Name>k__BackingField: Dummy
+  <MoveSpeed>k__BackingField: 6
+  <Path>k__BackingField: {fileID: 333689192716518876, guid: 9fb1336e618b92d49a721d3e5a4c5e89, type: 3}

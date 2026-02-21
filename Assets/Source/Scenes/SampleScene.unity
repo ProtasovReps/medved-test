@@ -668,11 +668,11 @@ MonoBehaviour:
   _targetParent: {fileID: 1181793080}
   _pathParent: {fileID: 2099500834}
   _targetConfigs:
-  - {fileID: 11400000, guid: 18f67a0e971c5704184548c31ab65e7b, type: 2}
   - {fileID: 11400000, guid: e462c8a9a31071144b9e4963da05777a, type: 2}
   - {fileID: 11400000, guid: 18f67a0e971c5704184548c31ab65e7b, type: 2}
   - {fileID: 11400000, guid: 2b00696b97d260a47b14f89c42542c9b, type: 2}
   - {fileID: 11400000, guid: 48298e9e43336b14db4631593452a62d, type: 2}
+  - {fileID: 11400000, guid: 3d037addd12017249a40a84c9e5a46f4, type: 2}
   _spawnPoints:
   - {fileID: 93718352}
   - {fileID: 1755506906}
