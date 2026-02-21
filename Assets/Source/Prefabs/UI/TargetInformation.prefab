@@ -274,6 +274,7 @@ MonoBehaviour:
   _info:
     _name: {fileID: 7456877688003641357}
     _position: {fileID: 7126909778419218738}
+  _upOffset: 1.8
 --- !u!114 &5594542060153225431
 MonoBehaviour:
   m_ObjectHideFlags: 0

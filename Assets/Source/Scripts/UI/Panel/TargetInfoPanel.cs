@@ -10,6 +10,7 @@ namespace UI.Panel
     public class TargetInfoPanel : MonoBehaviour
     {
         [SerializeField] private TargetInfo _info;
+        [SerializeField] private float _upOffset;
         
         private IInformationalTarget _target;
         private CancellationTokenSource _cancellationTokenSource;
@@ -50,7 +51,7 @@ namespace UI.Panel
         {
             while (_cancellationTokenSource?.IsCancellationRequested == false)
             {
-                _transform.position = new Vector3(_target.Position.x, 0, _target.Position.z);
+                _transform.position = new Vector3(_target.Position.x, _target.Position.y + _upOffset, _target.Position.z);
                 _transform.rotation = _camera.transform.rotation;
                 
                 _info.Update(_target);
